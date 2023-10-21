@@ -4,11 +4,11 @@ This [Obsidian](https://obsidian.md) plugin adds syntax highlighting to inline c
 
 Go from 🥱
 
-![meh](./without-plugin.png)
+[<img src="./without-plugin.png" width="400" alt="meh" />](./without-plugin.png)
 
 to 💅
 
-![wow](./with-plugin.png)
+[<img src="./with-plugin.png" width="400" alt="wow" />](./with-plugin.png)
 
 ## Installation
 
@@ -16,7 +16,7 @@ to 💅
 
 1. Clone this repo into your `<vault>/.obsidian/plugins` directory
 2. In `plugins/obisidian-inline-syntax-hl`: `npm install && npm run build`
-3. Enable the plugin: `preferences → Community plugins → toggle slider for "Move Tabs"`
+3. Enable the plugin: `preferences → Community plugins → toggle slider for "Inline Syntax Highlight"`
 4. (Optional) set your preferred languages in the settings
 
 ### Through community plugins
