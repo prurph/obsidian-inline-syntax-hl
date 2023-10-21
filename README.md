@@ -1,6 +1,6 @@
-# Obsidian Sample Plugin
+# Obsidian Inline Syntax Highlight
 
-This [Obsidian](https://obsidian.md) plugin adds syntax highlighting to inline code blocks!
+This [Obsidian](https://obsidian.md) plugin adds syntax highlighting to inline code blocks! It works in reading view and doesn't alter the file content at all.
 
 Go from 🥱
 
