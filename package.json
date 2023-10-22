@@ -22,7 +22,6 @@
 		"typescript": "4.7.4"
 	},
 	"dependencies": {
-		"@vscode/vscode-languagedetection": "^1.0.22",
 		"highlight.js": "^11.9.0"
 	}
 }

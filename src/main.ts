@@ -1,9 +1,5 @@
 import { App, Plugin, PluginSettingTab, Setting, normalizePath } from 'obsidian';
 import hljs from 'highlight.js/lib/common';
-import { ModelOperations } from "@vscode/vscode-languagedetection";
-import * as modelJSON from "../model.json";
-
-// Remember to rename these classes and interfaces!
 
 interface Settings {
 	minRelevance: number;
@@ -17,14 +13,6 @@ const DEFAULT_SETTINGS: Settings = {
 
 export default class InlineSyntaxHighlight extends Plugin {
 	settings: Settings;
-	modelOperations: ModelOperations;
-
-	// This does such a poor job on single-line code that it's not even worth
-	// adding it as a configurable option.
-	async detectByModel(code: string) {
-		const langs = await this.modelOperations.runModel(code);
-		if (langs.length > 0) return langs[0].languageId;
-	}
 
 	detectByHljs(code: string, languageSubset = undefined) {
 		const {
@@ -50,19 +38,12 @@ export default class InlineSyntaxHighlight extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-		this.modelOperations = new ModelOperations({
-			modelJsonLoaderFunc: () => Promise.resolve(modelJSON),
-			weightsLoaderFunc: () => this.app.vault.adapter.readBinary(normalizePath(
-				this.app.vault.configDir + "/plugins/obsidian-inline-syntax-hl/group1-shard1of1.bin"
-			))
-		});
-
-		this.registerMarkdownPostProcessor((el, ctx) => {
+		this.registerMarkdownPostProcessor(async (el, ctx) => {
 			// TODO: allow ctx.frontmatter config to force langs
 			// TODO: options to omit single words, etc
 			const codeblocks = el.findAll("code:not(pre code)");
 			codeblocks.forEach(async c => {
-				const lang = this.detectByHljs(c.innerText);
+				let lang = this.detectByHljs(c.innerText);
 				if (lang) {
 					c.addClass(`language-${lang}`);
 				}
