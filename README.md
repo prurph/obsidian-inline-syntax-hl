@@ -23,6 +23,12 @@ to 💅
 
 Not yet!
 
+## Configuration
+
+None necessary!
+
+Optionally, each note may contain an `inline_lang` frontmatter property. If set, all inline codeblocks in the note will be formatted as that language.
+
 ## How it works
 
 - The plugin uses [highlight.js](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) to determine a language for each inline codeblock

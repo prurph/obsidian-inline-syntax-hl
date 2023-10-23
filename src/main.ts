@@ -42,8 +42,9 @@ export default class InlineSyntaxHighlight extends Plugin {
 			// TODO: allow ctx.frontmatter config to force langs
 			// TODO: options to omit single words, etc
 			const codeblocks = el.findAll("code:not(pre code)");
+			let fmLang = ctx?.frontmatter.inline_lang;
 			codeblocks.forEach(async c => {
-				let lang = this.detectByHljs(c.innerText);
+				const lang = fmLang || this.detectByHljs(c.innerText);
 				if (lang) {
 					c.addClass(`language-${lang}`);
 				}
